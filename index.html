@@ -7,12 +7,15 @@
     body { 
       font-family: Arial; 
       background: #f4f4f4; 
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
+      margin: 0;
       height: 100vh; 
     }
     .login-box { 
+      position: fixed;  /* ekranda sabit tut */
+      top: 50%;         /* dikey ortala */
+      left: 50%;        /* yatay ortala */
+      transform: translate(-50%, -50%); /* tam ortalama için */
+      
       background: white; 
       padding: 30px; 
       border-radius: 12px; 
@@ -74,7 +77,6 @@
       const pass = document.getElementById("password").value;
 
       if(users[user] && users[user].password === pass) {
-        // Doğru giriş - kullanıcıya özel Google Sheet aç
         window.open(users[user].url, "_blank"); 
       } else {
         document.getElementById("error").textContent = "Kullanıcı adı veya şifre yanlış!";
