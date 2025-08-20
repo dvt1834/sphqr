@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Giriş Ekranı</title>
+  <style>
+    body { 
+      font-family: Arial; 
+      background: #f4f4f4; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      height: 100vh; 
+    }
+    .login-box { 
+      background: white; 
+      padding: 30px; 
+      border-radius: 12px; 
+      box-shadow: 0 0 15px rgba(0,0,0,0.2); 
+      text-align: center;
+      width: 320px;
+    }
+    .login-box img {
+      max-width: 120px;
+      margin-bottom: 15px;
+    }
+    input { 
+      display: block; 
+      margin: 10px auto; 
+      padding: 10px; 
+      width: 90%; 
+      border: 1px solid #ccc; 
+      border-radius: 5px; 
+    }
+    button { 
+      padding: 10px 20px; 
+      background: #007BFF; 
+      color: white; 
+      border: none; 
+      border-radius: 5px; 
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .error { 
+      color: red; 
+      margin-top: 10px; 
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <!-- Buraya logo -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="Logo"> 
+    <h2>Giriş Yap</h2>
+    <input type="text" id="username" placeholder="Kullanıcı Adı">
+    <input type="password" id="password" placeholder="Şifre">
+    <button onclick="login()">Giriş</button>
+    <p id="error" class="error"></p>
+  </div>
+
+  <script>
+    // Kullanıcılar: kullanıcı adı, şifre ve yönlendirilecek Google Sheet linki
+    const users = {
+      "dvt":   { password: "1234", url: "https://docs.google.com/spreadsheets/d/ALI_SHEET_LINK/edit" },
+      "ayse":  { password: "abcd", url: "https://docs.google.com/spreadsheets/d/AYSE_SHEET_LINK/edit" },
+      "mehmet":{ password: "qwerty", url: "https://docs.google.com/spreadsheets/d/MEHMET_SHEET_LINK/edit" }
+    };
+
+    function login() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+
+      if(users[user] && users[user].password === pass) {
+        // Doğru giriş - kullanıcıya özel Google Sheet aç
+        window.open(users[user].url, "_blank"); 
+      } else {
+        document.getElementById("error").textContent = "Kullanıcı adı veya şifre yanlış!";
+      }
+    }
+  </script>
+</body>
+</html>
